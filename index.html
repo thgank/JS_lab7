@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Race Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .flex {
+      display: flex;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+
+      <h1>Race Registration Form</h1>
+      <form id="raceRegistrationForm">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+          <label>Title:</label>
+          <div class="flex">
+            <input type="radio" id="mrRadio" name="title" value="Mr.">
+            <label for="mrRadio">Mr.</label>
+            <input type="radio" id="msRadio" name="title" value="Ms.">
+            <label for="msRadio">Ms.</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="fullName">Full Name:</label>
+          <div class="flex">
+            <input type="text" id="fullName" name="fullName" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="postalAddress">Complete Postal Mailing Address (with postal code & country):</label>
+          <input type="text" id="postalAddress" name="postalAddress" required>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone:</label>
+          <input type="tel" id="phone" name="phone" required>
+          <label for="fax">Fax:</label>
+          <input type="tel" id="fax" name="fax" required>
+        </div>
+
+        <div class="form-group">
+          <label for="occupation">Occupation:</label>
+          <input type="text" id="occupation" name="occupation" required>
+          <label for="marital">Marital status:</label>
+          <input type="text" id="marital" name="marital" required>
+        </div>
+
+        <div class="form-group">
+          <h2>Emergency contact</h2>
+          <label for="secName">Name:</label>
+          <input type="text" id="secName" name="secName" required>
+          <label for="secEmail">Email:</label>
+          <input type="email" id="secEmail" name="secEmail" required>
+          <label for="secPhone">Phone no:</label>
+          <input type="tel" id="secPhone" name="secPhone" required>
+        </div>
+
+        <div class="form-group">
+          <label for="tripSelect">Select trip:</label>
+          <select id="tripSelect" name="trip" required>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="typeSelect">I am a:</label>
+          <select id="typeSelect" name="type" required>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="tshirtSizeSelect">T-shirt Size:</label>
+          <select id="tshirtSizeSelect" name="tshirtSize" required>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Smoker:</label>
+          <div class="flex">
+            <input type="radio" id="smokerYes" name="smoker" value="Yes">
+            <label for="smokerYes">Yes</label>
+            <input type="radio" id="smokerNo" name="smoker" value="No">
+            <label for="smokerNo">No</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="roomSharing">Room sharing preference:</label>
+          <input type="text" id="roomSharing" name="roomSharing" required>
+        </div>
+
+        <div class="form-group">
+          <label for="passportName">Exact Name (as on passport):</label>
+          <input type="text" id="passportName" name="passportName" required>
+        </div>
+
+        <div class="form-group">
+          <label for="passportNumber">Passport Number:</label>
+          <input type="text" id="passportNumber" name="passportNumber" required>
+          <label for="dateIssued">Date Issued:</label>
+          <input type="text" id="dateIssued" name="dateIssued" required>
+          <label for="whereIssued">Where Issued:</label>
+          <input type="text" id="whereIssued" name="whereIssued" required>
+          <label for="dateExpires">Date Expires:</label>
+          <input type="text" id="dateExpires" name="dateExpires" required>
+        </div>
+
+        <div class="form-group">
+          <label for="dateOfBirth">Date of Birth:</label>
+          <input type="date" id="dateOfBirth" name="dateOfBirth" required>
+          <label for="placeOfBirth">Place of Birth:</label>
+          <input type="text" id="placeOfBirth" name="placeOfBirth" required>
+          <label for="citizenOf">Citizen Of:</label>
+          <input type="text" id="citizenOf" name="citizenOf" required>
+        </div>
+
+        <div class="form-group">
+          <label for="agreement">I agree to all booking terms and conditions:</label>
+          <input type="checkbox" id="agreement" name="agreement" required>
+        </div>
+
+        <div class="form-group">
+          <button type="button" onclick="submitForm()">Register</button>
+        </div>
+      </form>
+
+    <script>
+      // Populate select options using DOM
+      const tripSelect = document.getElementById('tripSelect');
+      const typeSelect = document.getElementById('typeSelect');
+      const tshirtSizeSelect = document.getElementById('tshirtSizeSelect');
+
+      const tripOptions = [
+        { value: 'stageRace', text: 'Stage Race' },
+        { value: 'evChallenge', text: 'Mt. Everest Challenge Marathon (4 day trip)' },
+        { value: 'bikeRally', text: 'Mt. Everest Bike Rally' },
+      ];
+
+      tripOptions.forEach((option) => {
+        const optionElement = document.createElement('option');
+        optionElement.value = option.value;
+        optionElement.textContent = option.text;
+        tripSelect.appendChild(optionElement);
+      });
+
+      const typeOptions = [
+        { value: 'runner', text: 'Runner' },
+        { value: 'walker', text: 'Walker' },
+        { value: 'cyclist', text: 'Cyclist' },
+      ];
+
+      typeOptions.forEach((option) => {
+        const optionElement = document.createElement('option');
+        optionElement.value = option.value;
+        optionElement.textContent = option.text;
+        typeSelect.appendChild(optionElement);
+      });
+
+      const tshirtSizeOptions = ['Small', 'Medium', 'Large', 'X-Large'];
+
+      tshirtSizeOptions.forEach((size) => {
+        const optionElement = document.createElement('option');
+        optionElement.value = size.toLowerCase();
+        optionElement.textContent = size;
+        tshirtSizeSelect.appendChild(optionElement);
+      });
+
+      // Function to handle form submission
+      const submitForm = () => {
+        const formData = new FormData(document.getElementById('raceRegistrationForm'));
+
+        // You can access form data using formData and perform further processing here
+        // For demonstration, we'll log the form data to the console
+        for (const pair of formData.entries()) {
+          console.log(`${pair[0]}: ${pair[1]}`);
+        }
+      };
+
+      // Change the button style when clicked
+      const registerButton = document.querySelector('button');
+      registerButton.addEventListener('click', () => {
+        registerButton.style.backgroundColor = 'green';
+        registerButton.style.color = 'white';
+      });
+    </script>
+</body>
+</html>
